@@ -6,7 +6,7 @@ createApp({
     data() {
 
         return {
-            apiUrl: 'server.php',
+            apiUrl: "server.php",
             todoList: [],
             addTask: "",
 
@@ -19,7 +19,9 @@ createApp({
             this.lista.splice(index, 1)
         },
 
-        aggiungi() {
+
+
+        /*aggiungi() {
             this.lastId++;
 
             const newObj = {
@@ -29,17 +31,18 @@ createApp({
             }
             this.lista.push(newObj),
                 this.todoTextNew = ''
-        },
+        }*/
 
         addNewTask() {
+            console.log(this.addTask)
             const data = new FormData();
             data.append("task", this.addTask)
             axios.post(this.apiUrl, data)
-                .then((response) => {
-                    console.log(response);
-                    this.todoList = response;
+                .then(function (response) {
+                    console.log(response.data);
+                    //this.todoList = response;
                 })
-                .catch((error) => {
+                .catch(function (error) {
                     console.log(error);
                 })
 
@@ -49,6 +52,10 @@ createApp({
             this.lista[id].done = !this.lista[id].done
         }
 
-    }
+    },
+    mounted() {
+
+        this.addNewTask();
+    },
 
 }).mount('#app')

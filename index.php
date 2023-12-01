@@ -17,18 +17,18 @@
     <div id="app">
         <div class="container">
             <header class="text-center pt-4">
-                <img class="w-25" src="img/ita.png" alt="">
+                <!--<img class="w-25" src="img/ita.png" alt="">-->
                 <div class="pt-5">
-                    <input type="text" class="form-control w-25 d-inline-block mx-3" v-model="todoTextNew"
-                        @keyup.enter="aggiungi">
-                    <button class="btn btn-danger" @click="aggiungi">addList</button>
+                    <input type="text" class="form-control w-25 d-inline-block mx-3" v-model="addNewTask"
+                        @keyup.enter="addNewTask">
+                    <button class="btn btn-danger" @click="addNewTask">addList</button>
                 </div>
             </header>
             <main>
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-action d-flex justify-content-between"
-                        v-for="(todo, index) in lista" :key="todo.id">
-                        <span :class="{'done': todo.done}" @click="bonus2(id)">{{todo.text}}</span>
+                        v-for="(task,index) in todoList" :key="index">
+                        <span :class="{'done': todo.done}" @click="bonus2(id)">{{task}}</span>
                         <i class="fa-solid fa-trash" @click="remove(index)"></i>
 
 
