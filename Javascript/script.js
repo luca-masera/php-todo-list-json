@@ -39,8 +39,8 @@ createApp({
             data.append("task", this.addTask)
             axios.post(this.apiUrl, data)
                 .then(function (response) {
-                    console.log(response);
-                    this.todoList = response;
+                    console.log(response.data);
+                    this.todoList = response.data;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -53,9 +53,9 @@ createApp({
         }*/
 
     },
-    created() {
+    /*created() {
 
         this.addNewTask();
-    },
+    },*/
 
 }).mount('#app')
