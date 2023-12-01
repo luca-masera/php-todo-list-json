@@ -10,7 +10,9 @@ $list = json_decode($filecontent, true);
 
 
 if (isset($_POST['task'])) {
-    $list[] = $_POST['task'];
+    $addTask = $_POST['task'];
+    array_push($list, $addTask);
+    file_put_contents("todo-list.json", json_encode($list));
 }
 
 header('Content-Type: application/json');

@@ -15,9 +15,9 @@ createApp({
 
     methods: {
 
-        remove(index) {
-            this.lista.splice(index, 1)
-        },
+        /* remove(index) {
+             this.lista.splice(index, 1)
+         },*/
 
 
 
@@ -39,8 +39,8 @@ createApp({
             data.append("task", this.addTask)
             axios.post(this.apiUrl, data)
                 .then(function (response) {
-                    console.log(response.data);
-                    //this.todoList = response;
+                    console.log(response);
+                    this.todoList = response;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -48,12 +48,12 @@ createApp({
 
         },
 
-        bonus2(id) {
+        /*bonus2(id) {
             this.lista[id].done = !this.lista[id].done
-        }
+        }*/
 
     },
-    mounted() {
+    created() {
 
         this.addNewTask();
     },

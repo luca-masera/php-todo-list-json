@@ -28,7 +28,7 @@
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-action d-flex justify-content-between"
                         v-for="(task,index) in todoList" :key="index">
-                        <span :class="{'done': todo.done}" @click="bonus2(id)">{{task}}</span>
+                        <span :class="{'done': todo.done}" @click="bonus2(id)">{{ task }}</span>
                         <i class="fa-solid fa-trash" @click="remove(index)"></i>
 
 
