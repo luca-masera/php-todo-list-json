@@ -6,46 +6,17 @@ createApp({
     data() {
 
         return {
-            lista: [
-
-                {
-                    id: 1,
-                    text: 'Comprare la zucca',
-                    done: true
-                },
-                {
-                    id: 2,
-                    text: 'Comprare il vestito',
-                    done: false
-                },
-                {
-                    id: 3,
-                    text: 'Comprare i dolcetti',
-                    done: true
-                },
-                {
-                    id: 4,
-                    text: 'Comprare le decorazioni',
-                    done: true
-                },
-                {
-                    id: 5,
-                    text: 'Comprare due birre',
-                    done: false
-                }
-            ],
-
-            lastId: 5,
-            todoTextNew: ''
-
+            apiUrl: 'server.php',
+            todoList: [],
+            addTask: "",
 
         }
     },
 
     methods: {
 
-        remove(id) {
-            this.lista.splice(id, 1)
+        remove(index) {
+            this.lista.splice(index, 1)
         },
 
         aggiungi() {
@@ -58,6 +29,20 @@ createApp({
             }
             this.lista.push(newObj),
                 this.todoTextNew = ''
+        },
+
+        addNewTask() {
+            const data = new FormData();
+            data.append("task", this.addTask)
+            axios.post(this.apiUrl, data)
+                .then((response) => {
+                    console.log(response);
+                    this.todoList = response;
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+
         },
 
         bonus2(id) {

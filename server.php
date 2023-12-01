@@ -14,6 +14,6 @@ header('Content-Type: application/json');
 echo json_encode($list);
 
 //controllo
-var_dump($list)
+//var_dump($list)
 
-    ?>
+?>
