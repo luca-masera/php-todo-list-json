@@ -7,17 +7,27 @@ createApp({
 
         return {
             apiUrl: "server.php",
-            todoList: [],
-            addTask: "",
-
+            textList: [],
+            addTask: ""
         }
+
     },
 
     methods: {
 
-        /* remove(index) {
-             this.lista.splice(index, 1)
-         },*/
+        remove(index) {
+            const data = new FormData();
+            data.append("indexToRemove", index);
+
+            axios
+                .post(this.apiUrl, data)
+                .then((response) => {
+                    this.todoList = response.data;
+                    console.log(response.data);
+                    location.reload();
+                })
+        },
+
 
 
 
@@ -32,15 +42,28 @@ createApp({
             this.lista.push(newObj),
                 this.todoTextNew = ''
         }*/
+        readList() {
+            axios.get(this.apiUrl).then((response) => {
+                console.log(response);
+                this.textList = response.data;
+            }).catch(function (error) {
+                console.log(error);
+
+            }).finally(function () {
+
+
+            });
+        },
 
         addNewTask() {
-            console.log(this.addTask)
+            console.log(this.addTask);
             const data = new FormData();
             data.append('task', this.addTask)
             axios.post(this.apiUrl, data)
-                .then(function (response) {
+                .then((response) => {
                     console.log(response.data);
-                    this.todoList = response.data;
+                    this.textList = response.data;
+                    this.readList();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -48,11 +71,14 @@ createApp({
 
         },
 
-        /*bonus2(id) {
-            this.lista[id].done = !this.lista[id].done
-        }*/
+        mounted() {
 
-    },
+            this.readList();
+        },
+
+
+
+    }
     /*created() {
 
         this.addNewTask();

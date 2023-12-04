@@ -10,10 +10,18 @@ $list = json_decode($filecontent, true);
 
 
 if (isset($_POST['task'])) {
-    $newtask = ['text' => $_POST['task'], 'done' => false];
+    $newtask = ["text" => $_POST['task'], "done" => false];
     array_push($list, $newtask);
     file_put_contents('todo-list.json', json_encode($list));
 }
+if (isset($_POST['indexToRemove'])) {
+    $index = $_POST['indexToRemove'];
+    array_splice($list, $index, 1);
+    file_put_contents('todo-list.json', json_encode($list));
+
+}
+
+
 
 header('Content-Type: application/json');
 
