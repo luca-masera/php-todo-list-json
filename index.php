@@ -9,7 +9,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
     <title>Vue To Do List</title>
 </head>
 
@@ -28,7 +28,8 @@
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-action d-flex justify-content-between"
                         v-for="(task,index) in todoList" :key="index">
-                        <span :class="{'done': todo.done}" @click="bonus2(id)">{{ task }}</span>
+                        <span>{{ task.text }}</span>
+                        <span :class="{'done': todo.done}" -@click="bonus2(id)"></span>
                         <i class="fa-solid fa-trash" @click="remove(index)"></i>
 
 
