@@ -36,7 +36,7 @@ createApp({
         addNewTask() {
             console.log(this.addTask)
             const data = new FormData();
-            data.append("task", this.addTask)
+            data.append('task', this.addTask)
             axios.post(this.apiUrl, data)
                 .then(function (response) {
                     console.log(response.data);
